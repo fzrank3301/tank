@@ -93,6 +93,7 @@ public class TankFrame extends Frame {
 				break;
 			case KeyEvent.VK_RIGHT:
 				bR = false;
+				
 				x += 10;
 				break;
 			case KeyEvent.VK_UP:
