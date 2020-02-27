@@ -15,7 +15,7 @@ public class TankFrame extends Frame {
 	static final int GAME_WIDTH = 800,GAME_HEIGHT=600;
 	
 	// 生成可操作的坦克对象
-	Tank myTank = new Tank(200, 200, Dir.DOWN);
+	Tank myTank = new Tank(200, 200, Dir.DOWN,this);
 	Bullet b = new Bullet(300, 300, Dir.RIGHT);
 
 
@@ -114,7 +114,11 @@ public class TankFrame extends Frame {
 			case KeyEvent.VK_DOWN:
 				bD = false;
 				break;
+			case KeyEvent.VK_Z:
+				myTank.fire();
+				break;
 			}
+				
 			setMainTankDir();
 		}
 
