@@ -8,15 +8,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import org.omg.CORBA.ORBPackage.InconsistentTypeCode;
 
-import com.sun.jmx.snmp.tasks.ThreadService;
-import com.sun.org.apache.xerces.internal.impl.dv.dtd.IDREFDatatypeValidator;
-
-import sun.net.www.content.audio.x_aiff;
 
 public class TankFrame extends Frame {
 
+	static final int GAME_WIDTH = 800,GAME_HEIGHT=600;
+	
 	// 生成可操作的坦克对象
 	Tank myTank = new Tank(200, 200, Dir.DOWN);
 	Bullet b = new Bullet(300, 300, Dir.RIGHT);
@@ -26,7 +23,7 @@ public class TankFrame extends Frame {
 	public TankFrame() {
 		this.setTitle("Tank War");
 		this.setResizable(false);
-		this.setSize(800, 600);
+		this.setSize(GAME_WIDTH, GAME_HEIGHT);
 		this.setVisible(true);
 
 		// 添加按键监听，传入一个内部类
@@ -43,6 +40,26 @@ public class TankFrame extends Frame {
 		});
 	}
 
+	
+	//双缓冲解决闪烁问题
+	java.awt.Image OffScreenImage = null;
+	@Override
+	public void update(Graphics g) {
+		if (OffScreenImage==null) {
+			OffScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
+		}
+		Graphics gOffScreen = OffScreenImage.getGraphics();
+		Color c = gOffScreen.getColor();
+		gOffScreen.setColor(Color.BLACK);
+		gOffScreen.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		gOffScreen.setColor(c);
+		paint(gOffScreen);
+		g.drawImage(OffScreenImage,0,0,null);
+	}
+	
+	
+	
+	
 	// 画图方法，把传入的参数g交给tank类进行处理
 	@Override
 	public void paint(Graphics g) {
