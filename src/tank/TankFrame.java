@@ -19,6 +19,8 @@ public class TankFrame extends Frame {
 
 	// 生成可操作的坦克对象
 	Tank myTank = new Tank(200, 200, Dir.DOWN);
+	Bullet b = new Bullet(300, 300, Dir.RIGHT);
+
 
 	// 窗口相关设置
 	public TankFrame() {
@@ -45,6 +47,7 @@ public class TankFrame extends Frame {
 	@Override
 	public void paint(Graphics g) {
 		myTank.paint(g);
+		b.paint(g);
 	}
 
 	// 内部类
