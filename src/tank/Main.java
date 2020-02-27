@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 
 import com.sun.media.jfxmedia.events.NewFrameEvent;
 
-public class TMain {
+public class Main {
 	public static void main(String[] args) throws Exception {
 		TankFrame tankFrame = new TankFrame();
 		

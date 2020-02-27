@@ -18,11 +18,15 @@ import sun.net.www.content.audio.x_aiff;
 public class TankFrame extends Frame {
 
 	// 设置坦克的初始位置
-	int x = 200;
-	int y = 200;
-	final int SPEED = 10;
-
-	Dir dir ;
+//	int x = 200;
+//	int y = 200;
+//	final int SPEED = 10;
+//
+//	Dir dir ;
+	
+	//主战坦克
+	Tank myTank = new Tank(200,200,Dir.DOWN);
+	
 
 	public TankFrame() {
 		this.setTitle("Tank War");
@@ -45,25 +49,9 @@ public class TankFrame extends Frame {
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(Color.PINK);
-		g.fillRect(x, y, 50, 50);
-
-		//控制速度
-		switch (dir) {
-		case LEFT:
-			x -= SPEED;
-			break;
-		case UP:
-			y -= SPEED;
-			break;
-		case DOWN:
-			y += SPEED;
-			break;
-		case RIGHT:
-			x += SPEED;
-		default:
-			break;
-		}
+		
+		myTank.paint(g);
+		
 	}
 	
 
@@ -124,13 +112,13 @@ public class TankFrame extends Frame {
 
 		private void setMainTankDir() {
 			if (bL)
-				dir = Dir.LEFT;
+				myTank.setDir(Dir.LEFT); 
 			if (bR)
-				dir = Dir.RIGHT;
+				myTank.setDir(Dir.RIGHT); 
 			if (bU)
-				dir = Dir.UP;
+				myTank.setDir(Dir.UP); 
 			if (bD)
-				dir = Dir.DOWN;
+				myTank.setDir(Dir.DOWN); 
 		}
 
 	}
