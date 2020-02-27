@@ -17,25 +17,20 @@ import sun.net.www.content.audio.x_aiff;
 
 public class TankFrame extends Frame {
 
-	// 设置坦克的初始位置
-//	int x = 200;
-//	int y = 200;
-//	final int SPEED = 10;
-//
-//	Dir dir ;
-	
-	//主战坦克
-	Tank myTank = new Tank(200,200,Dir.DOWN);
-	
+	// 生成可操作的坦克对象
+	Tank myTank = new Tank(200, 200, Dir.DOWN);
 
+	// 窗口相关设置
 	public TankFrame() {
 		this.setTitle("Tank War");
 		this.setResizable(false);
 		this.setSize(800, 600);
 		this.setVisible(true);
 
+		// 添加按键监听，传入一个内部类
 		this.addKeyListener(new MyKeyListener());
 
+		// 添加窗口监听，传入一个匿名内部类
 		this.addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -46,23 +41,21 @@ public class TankFrame extends Frame {
 		});
 	}
 
+	// 画图方法，把传入的参数g交给tank类进行处理
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		
 		myTank.paint(g);
-		
 	}
-	
 
+	// 内部类
 	class MyKeyListener extends KeyAdapter {
-
+		// 初始设置，四个按键都未被按下
 		boolean bL = false;
 		boolean bU = false;
 		boolean bR = false;
 		boolean bD = false;
 
-		//控制方向
+		// 按键被按下
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
@@ -80,13 +73,10 @@ public class TankFrame extends Frame {
 				bD = true;
 				break;
 			}
-
 			setMainTankDir();
-
 		}
 
-		// 右 39 左 37
-
+		// 按键跳起来
 		@Override
 		public void keyReleased(KeyEvent e) {
 
@@ -105,20 +95,29 @@ public class TankFrame extends Frame {
 				bD = false;
 				break;
 			}
-
 			setMainTankDir();
-
 		}
 
+		// 通过bool设置坦克方向
 		private void setMainTankDir() {
-			if (bL)
-				myTank.setDir(Dir.LEFT); 
-			if (bR)
-				myTank.setDir(Dir.RIGHT); 
-			if (bU)
-				myTank.setDir(Dir.UP); 
-			if (bD)
-				myTank.setDir(Dir.DOWN); 
+
+			if (!bD && !bU && !bL && !bR) {
+				// 如果四个键都没按，不动
+				myTank.setMoving(false);
+			} else {
+				// 按了，设置坦克方向
+				myTank.setMoving(true);
+
+				if (bL)
+					myTank.setDir(Dir.LEFT);
+				if (bR)
+					myTank.setDir(Dir.RIGHT);
+				if (bU)
+					myTank.setDir(Dir.UP);
+				if (bD)
+					myTank.setDir(Dir.DOWN);
+			}
+
 		}
 
 	}
