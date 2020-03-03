@@ -2,6 +2,9 @@ package tank;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import org.junit.experimental.theories.Theories;
 
 import com.sun.prism.paint.Paint;
 
@@ -12,7 +15,7 @@ public class Bullet {
 	private int x, y;
 	private Dir dir;
 	
-	private boolean living = true;
+	public boolean living = true;
 	TankFrame tf = null;
 	
 	public Bullet(int x, int y, Dir dir,TankFrame tf) {
@@ -78,5 +81,23 @@ public class Bullet {
 		//  if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.HEIGHT) live = false;
 		// FUCKKKKKKK THE TankFrame.HEIGHT !!!!!!!!!!
 	}
+
+	public void collidewith(Tank tank) {
+		// TODO Auto-generated method stub
+		Rectangle rectangle1 = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+		Rectangle rectangle2 = new Rectangle(tank.getX(), tank.getY(), tank.WIDTH, tank.HEIGHT);
+		if (rectangle1.intersects(rectangle2)) {
+			tank.die();
+			this.die();
+		}
+	}
+
+	//子弹死亡
+	private void die() {
+		// TODO Auto-generated method stub
+		this.living = false;
+	}
+
+
 	
 }
