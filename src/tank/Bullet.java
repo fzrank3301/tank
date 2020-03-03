@@ -7,7 +7,8 @@ import com.sun.prism.paint.Paint;
 
 public class Bullet {
 	private static final int SPEED = 15;
-	private static final int WIDTH = 20, HEIGHT = 20;
+	public static final int WIDTH = ResourceMgr.BulletD.getWidth();
+	public static final int HEIGHT = ResourceMgr.BulletD.getHeight();
 	private int x, y;
 	private Dir dir;
 	
