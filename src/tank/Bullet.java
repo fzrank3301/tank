@@ -53,7 +53,7 @@ public class Bullet {
 			break;
 		}
 		
-		System.out.println("x:"+Integer.toString(x)+" y:"+Integer.toString(y)+living);
+		System.out.println("x:"+Integer.toString(x)+" y:"+Integer.toString(y)+"是否存活:"+living);
 		if (this.x < 0 || this.y < 0 || this.x > TankFrame.GAME_WIDTH || this.y > TankFrame.GAME_HEIGHT) living = false;
 			
 		
