@@ -108,6 +108,7 @@ public class Tank {
 	}
 
 	public void fire() {
+		//子弹位置调优
 		int bX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2 ;
 		int bY = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
 		

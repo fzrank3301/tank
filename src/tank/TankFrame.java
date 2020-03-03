@@ -18,10 +18,12 @@ public class TankFrame extends Frame {
 	
 	// 生成可操作的坦克对象
 	Tank myTank = new Tank(200, 200, Dir.DOWN,this);
+	// 子弹List
 	List<Bullet> bullets = new ArrayList<>();
+	// 坦克容器
+	List<Tank> tanks = new ArrayList<>();
 
-
-
+	
 	// 窗口相关设置
 	public TankFrame() {
 		this.setTitle("Tank War");
@@ -70,9 +72,16 @@ public class TankFrame extends Frame {
 		g.setColor(Color.white);
 		g.drawString("子弹的数量"+bullets.size(), 50, 50);
 		g.setColor(gColor);
+		
+		//画出子弹
 		myTank.paint(g);
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).paint(g);
+		}
+		
+		//画出坦克
+		for (int i = 0; i < tanks.size(); i++) {
+			tanks.get(i).paint(g);
 		}
 	}
 
